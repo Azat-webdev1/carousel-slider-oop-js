@@ -23,7 +23,6 @@ const valid = new Validator({
   },
 });
 
-
 const valid2 = new Validator({
   selector: '#form2',
   pattern: {
@@ -49,8 +48,6 @@ const valid2 = new Validator({
   },
 });
 
-
-
 const valid3 = new Validator({
   selector: '#form3',
   pattern: {
@@ -71,7 +68,5 @@ const valid3 = new Validator({
     ]
   },
 });
-
-
 
 export { valid, valid2, valid3 };

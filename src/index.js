@@ -10,6 +10,7 @@ import slider from './modules/slider';
 import toggleImageCommand from './modules/toggleImageCommand';
 import calc from './modules/calc';
 import sendForm from './modules/sendForm';
+import carousel from './modules/myCarouselSlider';
 
 
 //Валидация формы
@@ -34,5 +35,7 @@ toggleImageCommand();
 calc(100);
 //Отправка формы
 sendForm();
+//Карусель слайдер
+carousel.init();
 //Модальное окно
 togglePopup();

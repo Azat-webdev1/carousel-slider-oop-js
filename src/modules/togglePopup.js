@@ -29,7 +29,7 @@ const togglePopup = () => {
   };
 
   popupBtn.forEach((el) => {
-    el.addEventListener('click', (e) => {
+    el.addEventListener('click', () => {
       popup.style.display = 'block';
       if (screen.width > 768) {
         popupData.count = popupData.startPos;
