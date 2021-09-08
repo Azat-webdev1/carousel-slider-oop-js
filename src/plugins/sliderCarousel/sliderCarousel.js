@@ -9,7 +9,11 @@ class SliderCarousel {
     infinity = false,
     position = 0,
     slidesToShow = 3,
+    responsive = []
   }) {
+    if (!main || !wrap) {
+      console.warn('slider-carusel; Необходимо передать 2 свойства, "main" и "wrap"');
+    }
     this.main = document.querySelector(main);
     this.wrap = document.querySelector(wrap);
     this.slides = document.querySelector(wrap).children;
@@ -21,6 +25,7 @@ class SliderCarousel {
       infinity,
       widthSlide: Math.floor(100 / this.slidesToShow),
     };
+    this.responsive = responsive;
   }
 
   init() {
@@ -32,6 +37,9 @@ class SliderCarousel {
     } else {
       this.addArrow();
       this.controlSLider();
+    }
+    if (this.responsive) {
+      this.responseInit();
     }
   }
 
@@ -45,8 +53,12 @@ class SliderCarousel {
   }
 
   addStyle() {
-    const style = document.createElement('style');
-    style.id = 'sliderCarousel-style';
+    let style = document.getElementById('sliderCarusel-style');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'sliderCarousel-style';
+    }
+    
     style.textContent = `
       .glo-slider {
         overflow: hidden !important;
@@ -123,6 +135,31 @@ class SliderCarousel {
     `;
     
     document.head.appendChild(style);
+  }
+
+  responseInit() {
+    const slidesToShowDefault = this.slidesToShow;
+    const allResponse = this.responsive.map(item => item.breakpoint);
+    const maxResponse = Math.max(...allResponse);
+
+    const checkResponse = () => {
+      const widthWindow = document.documentElement.clientWidth;
+      if (widthWindow < maxResponse) {
+        for (let i = 0; i < allResponse.length; i++) {
+          if (widthWindow < allResponse[i]) {
+            this.slidesToShow = this.responsive[i].slidesToShow;
+            this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+            this.addStyle();
+          }
+        }
+      } else {
+        this.slidesToShow = slidesToShowDefault;
+        this.options.widthSlide = Math.floor(100 / this.slidesToShow);
+        this.addStyle();
+      }
+    };
+    checkResponse();
+    window.addEventListener('resize', checkResponse);
   }
 }
 

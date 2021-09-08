@@ -6,7 +6,23 @@ const carousel = new SliderCarousel({
   next: '.glo-slider__next',
   prev: '.glo-slider__prev',
   slidesToShow: 4,
-  infinity: true
+  infinity: true,
+  
+  responsive: [{
+    breakpoint: 1024,
+    slidesToShow: 3
+  },
+  
+  {
+    breakpoint: 768,
+    slidesToShow: 2
+  },
+  
+  {
+    breakpoint: 576,
+    slidesToShow: 1
+  }
+  ]
 })
 
 export default carousel;
