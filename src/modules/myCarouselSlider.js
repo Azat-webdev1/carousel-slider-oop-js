@@ -1,10 +1,12 @@
 import SliderCarousel from '../plugins/sliderCarousel/sliderCarousel';
 
 const carousel = new SliderCarousel({
-  main: '.slider',
-  wrap: '.slider-wrapper',
-  slides: 'li',
-  
+  main: '.companies-wrapper',
+  wrap: '.companies-hor',
+  next: '.glo-slider__next',
+  prev: '.glo-slider__prev',
+  slidesToShow: 4,
+  infinity: true
 })
 
 export default carousel;
